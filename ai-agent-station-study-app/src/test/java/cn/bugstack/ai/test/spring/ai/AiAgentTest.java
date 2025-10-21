@@ -60,7 +60,7 @@ public class AiAgentTest {
     public void init() {
 
         OpenAiApi openAiApi = OpenAiApi.builder()
-                .baseUrl("https://dashscope.aliyuncs.com/compatible-mode/n")
+                .baseUrl("https://dashscope.aliyuncs.com/compatible-mode/")
                 .apiKey("sk-0d2a387e9a1445389d98513280cbb44a")
                 .completionsPath("v1/chat/completions")
                 .embeddingsPath("v1/embeddings")
