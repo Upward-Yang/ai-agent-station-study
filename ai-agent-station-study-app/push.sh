@@ -6,8 +6,8 @@
 set -e
 
 # Define variables for the registry and image
-ALIYUN_REGISTRY="registry.cn-hangzhou.aliyuncs.com"
-NAMESPACE="system"
+ALIYUN_REGISTRY="crpi-dcbwfhu4h1qaps2o.cn-shanghai.personal.cr.aliyuncs.com"
+NAMESPACE="cherrytik"
 IMAGE_NAME="ai-agent-station-study-app"
 IMAGE_TAG="1.0-SNAPSHOT"
 
