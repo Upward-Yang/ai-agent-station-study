@@ -2,6 +2,7 @@ package cn.bugstack.ai.infrastructure.dao;
 
 import cn.bugstack.ai.infrastructure.dao.po.AiClientSystemPrompt;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -32,22 +33,22 @@ public interface IAiClientSystemPromptDao {
     /**
      * 根据ID删除系统提示词配置
      */
-    int deleteById(Long id);
+    int deleteById(@Param("id") Long id);
 
     /**
      * 根据提示词ID删除系统提示词配置
      */
-    int deleteByPromptId(String promptId);
+    int deleteByPromptId(@Param("promptId") String promptId);
 
     /**
      * 根据ID查询系统提示词配置
      */
-    AiClientSystemPrompt queryById(Long id);
+    AiClientSystemPrompt queryById(@Param("id") Long id);
 
     /**
      * 根据提示词ID查询系统提示词配置
      */
-    AiClientSystemPrompt queryByPromptId(String promptId);
+    AiClientSystemPrompt queryByPromptId(@Param("promptId") String promptId);
 
     /**
      * 查询启用的系统提示词配置
@@ -57,7 +58,7 @@ public interface IAiClientSystemPromptDao {
     /**
      * 根据提示词名称查询系统提示词配置
      */
-    List<AiClientSystemPrompt> queryByPromptName(String promptName);
+    List<AiClientSystemPrompt> queryByPromptName(@Param("promptName") String promptName);
 
     /**
      * 查询所有系统提示词配置

@@ -2,6 +2,7 @@ package cn.bugstack.ai.infrastructure.dao;
 
 import cn.bugstack.ai.infrastructure.dao.po.AiClientAdvisor;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -40,28 +41,28 @@ public interface IAiClientAdvisorDao {
      * @param id 主键ID
      * @return 影响行数
      */
-    int deleteById(Long id);
+    int deleteById(@Param("id") Long id);
 
     /**
      * 根据顾问ID删除顾问配置
      * @param advisorId 顾问ID
      * @return 影响行数
      */
-    int deleteByAdvisorId(String advisorId);
+    int deleteByAdvisorId(@Param("advisorId") String advisorId);
 
     /**
      * 根据ID查询顾问配置
      * @param id 主键ID
      * @return 顾问配置对象
      */
-    AiClientAdvisor queryById(Long id);
+    AiClientAdvisor queryById(@Param("id") Long id);
 
     /**
      * 根据顾问ID查询顾问配置
      * @param advisorId 顾问ID
      * @return 顾问配置对象
      */
-    AiClientAdvisor queryByAdvisorId(String advisorId);
+    AiClientAdvisor queryByAdvisorId(@Param("advisorId") String advisorId);
 
     /**
      * 查询所有顾问配置
@@ -74,12 +75,12 @@ public interface IAiClientAdvisorDao {
      * @param status 状态
      * @return 顾问配置列表
      */
-    List<AiClientAdvisor> queryByStatus(Integer status);
+    List<AiClientAdvisor> queryByStatus(@Param("status") Integer status);
 
     /**
      * 根据顾问类型查询顾问配置
      * @param advisorType 顾问类型
      * @return 顾问配置列表
      */
-    List<AiClientAdvisor> queryByAdvisorType(String advisorType);
+    List<AiClientAdvisor> queryByAdvisorType(@Param("advisorType") String advisorType);
 }

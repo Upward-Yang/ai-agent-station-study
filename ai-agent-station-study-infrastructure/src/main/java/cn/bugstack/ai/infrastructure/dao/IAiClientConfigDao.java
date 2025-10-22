@@ -2,6 +2,7 @@ package cn.bugstack.ai.infrastructure.dao;
 
 import cn.bugstack.ai.infrastructure.dao.po.AiClientConfig;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -47,28 +48,28 @@ public interface IAiClientConfigDao {
      * @param sourceId 源ID
      * @return 影响行数
      */
-    int deleteBySourceId(String sourceId);
+    int deleteBySourceId(@Param("sourceId") String sourceId);
 
     /**
      * 根据ID查询AI客户端配置
      * @param id 主键ID
      * @return AI客户端配置对象
      */
-    AiClientConfig queryById(Long id);
+    AiClientConfig queryById(@Param("id") Long id);
 
     /**
      * 根据源ID查询AI客户端配置
      * @param sourceId 源ID
      * @return AI客户端配置对象列表
      */
-    List<AiClientConfig> queryBySourceId(String sourceId);
+    List<AiClientConfig> queryBySourceId(@Param("sourceId") String sourceId);
 
     /**
      * 根据目标ID查询AI客户端配置
      * @param targetId 目标ID
      * @return AI客户端配置对象列表
      */
-    List<AiClientConfig> queryByTargetId(String targetId);
+    List<AiClientConfig> queryByTargetId(@Param("targetId") String targetId);
 
     /**
      * 根据源类型和源ID查询AI客户端配置
@@ -76,7 +77,8 @@ public interface IAiClientConfigDao {
      * @param sourceId 源ID
      * @return AI客户端配置对象列表
      */
-    List<AiClientConfig> queryBySourceTypeAndId(String sourceType, String sourceId);
+    List<AiClientConfig> queryBySourceTypeAndId(@Param("sourceType") String sourceType
+            , @Param("sourceId") String sourceId);
 
     /**
      * 根据目标类型和目标ID查询AI客户端配置
@@ -84,7 +86,8 @@ public interface IAiClientConfigDao {
      * @param targetId 目标ID
      * @return AI客户端配置对象列表
      */
-    List<AiClientConfig> queryByTargetTypeAndId(String targetType, String targetId);
+    List<AiClientConfig> queryByTargetTypeAndId(@Param("targetType") String targetType
+            , @Param("targetId") String targetId);
 
     /**
      * 查询启用状态的AI客户端配置

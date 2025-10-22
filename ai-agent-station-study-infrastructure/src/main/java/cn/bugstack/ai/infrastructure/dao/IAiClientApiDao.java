@@ -2,6 +2,7 @@ package cn.bugstack.ai.infrastructure.dao;
 
 import cn.bugstack.ai.infrastructure.dao.po.AiClientApi;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -40,28 +41,28 @@ public interface IAiClientApiDao {
      * @param id 主键ID
      * @return 影响行数
      */
-    int deleteById(Long id);
+    int deleteById(@Param("id") Long id);
 
     /**
      * 根据API ID删除AI客户端API配置
      * @param apiId API ID
      * @return 影响行数
      */
-    int deleteByApiId(String apiId);
+    int deleteByApiId(@Param("apiId") String apiId);
 
     /**
      * 根据ID查询AI客户端API配置
      * @param id 主键ID
      * @return AI客户端API配置对象
      */
-    AiClientApi queryById(Long id);
+    AiClientApi queryById(@Param("id") Long id);
 
     /**
      * 根据API ID查询AI客户端API配置
      * @param apiId API ID
      * @return AI客户端API配置对象
      */
-    AiClientApi queryByApiId(String apiId);
+    AiClientApi queryByApiId(@Param("apiId") String apiId);
 
     /**
      * 查询所有启用的AI客户端API配置

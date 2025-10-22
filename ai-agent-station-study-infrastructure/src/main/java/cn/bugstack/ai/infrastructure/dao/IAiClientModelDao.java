@@ -2,6 +2,7 @@ package cn.bugstack.ai.infrastructure.dao;
 
 import cn.bugstack.ai.infrastructure.dao.po.AiClientModel;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -40,42 +41,42 @@ public interface IAiClientModelDao {
      * @param id 主键ID
      * @return 影响行数
      */
-    int deleteById(Long id);
+    int deleteById(@Param("id") Long id);
 
     /**
      * 根据模型ID删除聊天模型配置
      * @param modelId 模型ID
      * @return 影响行数
      */
-    int deleteByModelId(String modelId);
+    int deleteByModelId(@Param("modelId") String modelId);
 
     /**
      * 根据ID查询聊天模型配置
      * @param id 主键ID
      * @return 聊天模型配置对象
      */
-    AiClientModel queryById(Long id);
+    AiClientModel queryById(@Param("id") Long id);
 
     /**
      * 根据模型ID查询聊天模型配置
      * @param modelId 模型ID
      * @return 聊天模型配置对象
      */
-    AiClientModel queryByModelId(String modelId);
+    AiClientModel queryByModelId(@Param("modelId") String modelId);
 
     /**
      * 根据API配置ID查询聊天模型配置
      * @param apiId API配置ID
      * @return 聊天模型配置列表
      */
-    List<AiClientModel> queryByApiId(String apiId);
+    List<AiClientModel> queryByApiId(@Param("apiId") String apiId);
 
     /**
      * 根据模型类型查询聊天模型配置
      * @param modelType 模型类型
      * @return 聊天模型配置列表
      */
-    List<AiClientModel> queryByModelType(String modelType);
+    List<AiClientModel> queryByModelType(@Param("modelType") String modelType);
 
     /**
      * 查询所有启用的聊天模型配置

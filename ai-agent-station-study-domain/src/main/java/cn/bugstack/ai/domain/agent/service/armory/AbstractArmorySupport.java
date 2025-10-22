@@ -71,4 +71,12 @@ public abstract class AbstractArmorySupport extends
     protected <T> T getBean(String beanName) {
         return (T) applicationContext.getBean(beanName);
     }
+
+    protected String beanName(String id) {
+        return null;
+    }
+
+    protected String dataName() {
+        return null;
+    }
 }

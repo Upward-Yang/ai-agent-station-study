@@ -2,6 +2,7 @@ package cn.bugstack.ai.infrastructure.dao;
 
 import cn.bugstack.ai.infrastructure.dao.po.AiAgent;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -39,28 +40,28 @@ public interface IAiAgentDao {
      * @param id 主键ID
      * @return 影响行数
      */
-    int deleteById(Long id);
+    int deleteById(@Param("id") Long id);
 
     /**
      * 根据智能体ID删除AI智能体配置
      * @param agentId 智能体ID
      * @return 影响行数
      */
-    int deleteByAgentId(String agentId);
+    int deleteByAgentId(@Param("agentId") String agentId);
 
     /**
      * 根据ID查询AI智能体配置
      * @param id 主键ID
      * @return AI智能体配置对象
      */
-    AiAgent queryById(Long id);
+    AiAgent queryById(@Param("id") Long id);
 
     /**
      * 根据智能体ID查询AI智能体配置
      * @param agentId 智能体ID
      * @return AI智能体配置对象
      */
-    AiAgent queryByAgentId(String agentId);
+    AiAgent queryByAgentId(@Param("agentId") String agentId);
 
     /**
      * 查询所有启用的AI智能体配置
@@ -73,7 +74,7 @@ public interface IAiAgentDao {
      * @param channel 渠道类型
      * @return AI智能体配置列表
      */
-    List<AiAgent> queryByChannel(String channel);
+    List<AiAgent> queryByChannel(@Param("channel") String channel);
 
     /**
      * 查询所有AI智能体配置

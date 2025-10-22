@@ -2,6 +2,7 @@ package cn.bugstack.ai.infrastructure.dao;
 
 import cn.bugstack.ai.infrastructure.dao.po.AiClientRagOrder;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -40,28 +41,28 @@ public interface IAiClientRagOrderDao {
      * @param id 主键ID
      * @return 影响行数
      */
-    int deleteById(Long id);
+    int deleteById(@Param("id") Long id);
 
     /**
      * 根据知识库ID删除知识库配置
      * @param ragId 知识库ID
      * @return 影响行数
      */
-    int deleteByRagId(String ragId);
+    int deleteByRagId(@Param("ragId") String ragId);
 
     /**
      * 根据ID查询知识库配置
      * @param id 主键ID
      * @return 知识库配置对象
      */
-    AiClientRagOrder queryById(Long id);
+    AiClientRagOrder queryById(@Param("id") Long id);
 
     /**
      * 根据知识库ID查询知识库配置
      * @param ragId 知识库ID
      * @return 知识库配置对象
      */
-    AiClientRagOrder queryByRagId(String ragId);
+    AiClientRagOrder queryByRagId(@Param("ragId") String ragId);
 
     /**
      * 查询启用的知识库配置
@@ -74,7 +75,7 @@ public interface IAiClientRagOrderDao {
      * @param knowledgeTag 知识标签
      * @return 知识库配置列表
      */
-    List<AiClientRagOrder> queryByKnowledgeTag(String knowledgeTag);
+    List<AiClientRagOrder> queryByKnowledgeTag(@Param("knowledgeTag") String knowledgeTag);
 
     /**
      * 查询所有知识库配置

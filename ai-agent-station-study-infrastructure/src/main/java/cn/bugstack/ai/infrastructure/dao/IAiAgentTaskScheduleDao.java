@@ -2,6 +2,7 @@ package cn.bugstack.ai.infrastructure.dao;
 
 import cn.bugstack.ai.infrastructure.dao.po.AiAgentTaskSchedule;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -33,28 +34,28 @@ public interface IAiAgentTaskScheduleDao {
      * @param id 主键ID
      * @return 影响行数
      */
-    int deleteById(Long id);
+    int deleteById(@Param("id") Long id);
 
     /**
      * 根据智能体ID删除任务调度配置
      * @param agentId 智能体ID
      * @return 影响行数
      */
-    int deleteByAgentId(Long agentId);
+    int deleteByAgentId(@Param("agentId") Long agentId);
 
     /**
      * 根据ID查询智能体任务调度配置
      * @param id 主键ID
      * @return 智能体任务调度配置对象
      */
-    AiAgentTaskSchedule queryById(Long id);
+    AiAgentTaskSchedule queryById(@Param("id") Long id);
 
     /**
      * 根据智能体ID查询任务调度配置列表
      * @param agentId 智能体ID
      * @return 智能体任务调度配置列表
      */
-    List<AiAgentTaskSchedule> queryByAgentId(Long agentId);
+    List<AiAgentTaskSchedule> queryByAgentId(@Param("agentId") Long agentId);
 
     /**
      * 查询所有有效的任务调度配置
@@ -67,7 +68,7 @@ public interface IAiAgentTaskScheduleDao {
      * @param taskName 任务名称
      * @return 智能体任务调度配置对象
      */
-    AiAgentTaskSchedule queryByTaskName(String taskName);
+    AiAgentTaskSchedule queryByTaskName(@Param("taskName") String taskName);
 
     /**
      * 查询所有智能体任务调度配置

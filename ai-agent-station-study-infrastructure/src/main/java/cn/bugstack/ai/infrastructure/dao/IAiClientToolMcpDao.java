@@ -2,6 +2,7 @@ package cn.bugstack.ai.infrastructure.dao;
 
 import cn.bugstack.ai.infrastructure.dao.po.AiClientToolMcp;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -40,28 +41,28 @@ public interface IAiClientToolMcpDao {
      * @param id 主键ID
      * @return 影响行数
      */
-    int deleteById(Long id);
+    int deleteById(@Param("id") Long id);
 
     /**
      * 根据MCP ID删除MCP客户端配置
      * @param mcpId MCP ID
      * @return 影响行数
      */
-    int deleteByMcpId(String mcpId);
+    int deleteByMcpId(@Param("mcpId") String mcpId);
 
     /**
      * 根据ID查询MCP客户端配置
      * @param id 主键ID
      * @return MCP客户端配置对象
      */
-    AiClientToolMcp queryById(Long id);
+    AiClientToolMcp queryById(@Param("id") Long id);
 
     /**
      * 根据MCP ID查询MCP客户端配置
      * @param mcpId MCP ID
      * @return MCP客户端配置对象
      */
-    AiClientToolMcp queryByMcpId(String mcpId);
+    AiClientToolMcp queryByMcpId(@Param("mcpId") String mcpId);
 
     /**
      * 查询所有MCP客户端配置
@@ -74,14 +75,14 @@ public interface IAiClientToolMcpDao {
      * @param status 状态
      * @return MCP客户端配置列表
      */
-    List<AiClientToolMcp> queryByStatus(Integer status);
+    List<AiClientToolMcp> queryByStatus(@Param("status") Integer status);
 
     /**
      * 根据传输类型查询MCP客户端配置
      * @param transportType 传输类型
      * @return MCP客户端配置列表
      */
-    List<AiClientToolMcp> queryByTransportType(String transportType);
+    List<AiClientToolMcp> queryByTransportType(@Param("transportType") String transportType);
 
     /**
      * 查询启用的MCP客户端配置
