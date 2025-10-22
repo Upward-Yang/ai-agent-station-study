@@ -1,5 +1,6 @@
 package cn.bugstack.ai.domain.agent.model.entity;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  * @version: 1.0
  */
 @Data
+@Builder
 public class ArmoryCommandEntity {
     /**
      * 命令类型
