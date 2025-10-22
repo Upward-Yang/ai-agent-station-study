@@ -75,7 +75,7 @@ public class AgentTest {
         Prompt prompt = Prompt.builder()
                 .messages(new UserMessage(
                         """
-                                Java 版本是多少
+                                在 C:\\Users\\yangjian\\Desktop 创建 txt.md 文件
                                 """))
                 .chatOptions(openAiChatModel.getDefaultOptions())
                 .build();
