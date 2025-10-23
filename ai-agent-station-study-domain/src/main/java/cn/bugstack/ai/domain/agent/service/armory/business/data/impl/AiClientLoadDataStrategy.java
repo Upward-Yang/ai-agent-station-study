@@ -49,7 +49,7 @@ public class AiClientLoadDataStrategy implements ILoadDataStrategy {
 
         var aiClientSystemPromptListFuture = CompletableFuture.supplyAsync(() -> {
             log.info("查询配置数据(ai_client_system_prompt) {}", clientIdList);
-            return repository.AiClientSystemPromptVOByClientIds(clientIdList);
+            return repository.queryAiClientSystemPromptMapByClientIds(clientIdList);
         }, threadPoolExecutor);
 
         CompletableFuture<List<AiClientAdvisorVO>> aiClientAdvisorListFuture = CompletableFuture.supplyAsync(() -> {

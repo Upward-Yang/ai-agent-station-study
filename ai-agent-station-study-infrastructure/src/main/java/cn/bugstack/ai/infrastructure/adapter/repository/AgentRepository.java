@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static cn.bugstack.ai.domain.agent.model.valobj.AiAgentEnumVO.*;
 
@@ -229,6 +230,27 @@ public class AgentRepository implements IAgentRepository {
     }
 
     @Override
+    public Map<String, AiClientSystemPromptVO> queryAiClientSystemPromptMapByClientIds(List<String> clientIdList) {
+        List<AiClientSystemPromptVO> aiClientSystemPrompts = AiClientSystemPromptVOByClientIds(clientIdList);
+
+        if (null == aiClientSystemPrompts || aiClientSystemPrompts.isEmpty()) {
+            return Collections.emptyMap();
+        }
+
+        // 将PO对象转换为VO对象，并构建Map结构
+        return aiClientSystemPrompts.stream()
+                .map(prompt -> AiClientSystemPromptVO.builder()
+                        .promptId(prompt.getPromptId())
+                        .promptContent(prompt.getPromptContent())
+                        .build())
+                .collect(Collectors.toMap(
+                        AiClientSystemPromptVO::getPromptId,  // key: id
+                        prompt -> prompt,               // value: AiClientSystemPromptVO对象
+                        (existing, replacement) -> existing  // 如果有重复key，保留第一个
+                ));
+    }
+
+
     public List<AiClientSystemPromptVO> AiClientSystemPromptVOByClientIds(List<String> clientIdList) {
         if (clientIdList == null || clientIdList.isEmpty()) {
             return List.of();
@@ -242,7 +264,7 @@ public class AgentRepository implements IAgentRepository {
             List<AiClientConfig> configs = aiClientConfigDao.queryBySourceTypeAndId(AI_CLIENT.getCode(), clientId);
 
             for (AiClientConfig config : configs) {
-                if ("prompt".equals(config.getTargetType()) && config.getStatus() == 1) {
+                if (AI_CLIENT_SYSTEM_PROMPT.getCode().equals(config.getTargetType()) && config.getStatus() == 1) {
                     String promptId = config.getTargetId();
 
                     // 避免重复处理相同的promptId
@@ -282,10 +304,10 @@ public class AgentRepository implements IAgentRepository {
 
         for (String clientId : clientIdList) {
             // 1. 查询客户端相关的advisor配置
-            List<AiClientConfig> configs = aiClientConfigDao.queryBySourceTypeAndId("client", clientId);
+            List<AiClientConfig> configs = aiClientConfigDao.queryBySourceTypeAndId(AI_CLIENT.getCode(), clientId);
 
             for (AiClientConfig config : configs) {
-                if (config.getStatus() != 1 || !"advisor".equals(config.getTargetType())) {
+                if (config.getStatus() != 1 || !AI_CLIENT_ADVISOR.getCode().equals(config.getTargetType())) {
                     continue;
                 }
 
@@ -308,10 +330,10 @@ public class AgentRepository implements IAgentRepository {
                 String extParam = aiClientAdvisor.getExtParam();
                 if (extParam != null && !extParam.trim().isEmpty()) {
                     try {
-                        if ("ChatMemory".equals(aiClientAdvisor.getAdvisorType())) {
+                        if (AiClientAdvisorTypeEnumVO.CHAT_MEMORY.getCode().equals(aiClientAdvisor.getAdvisorType())) {
                             // 解析chatMemory配置
                             chatMemory = JSON.parseObject(extParam, AiClientAdvisorVO.ChatMemory.class);
-                        } else if ("RagAnswer".equals(aiClientAdvisor.getAdvisorType())) {
+                        } else if (AiClientAdvisorTypeEnumVO.RAG_ANSWER.getCode().equals(aiClientAdvisor.getAdvisorType())) {
                             // 解析ragAnswer配置
                             ragAnswer = JSON.parseObject(extParam, AiClientAdvisorVO.RagAnswer.class);
                         }
@@ -359,7 +381,7 @@ public class AgentRepository implements IAgentRepository {
             }
 
             // 2. 查询客户端相关配置
-            List<AiClientConfig> configs = aiClientConfigDao.queryBySourceTypeAndId("client", clientId);
+            List<AiClientConfig> configs = aiClientConfigDao.queryBySourceTypeAndId(AI_CLIENT.getCode(), clientId);
 
             String modelId = null;
             List<String> promptIdList = new ArrayList<>();
