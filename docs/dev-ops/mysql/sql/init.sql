@@ -69,9 +69,9 @@ CREATE TABLE `ai_agent_flow_config` (
 LOCK TABLES `ai_agent_flow_config` WRITE;
 /*!40000 ALTER TABLE `ai_agent_flow_config` DISABLE KEYS */;
 
-INSERT INTO `ai_agent_flow_config` (`id`, `agent_id`, `client_id`, `sequence`, `create_time`)
+INSERT INTO `ai_agent_flow_config` (`id`, `agent_id`, `client_id`, `client_name`,`client_type`,`sequence`, `create_time`)
 VALUES
-    (1,1,3001,1,'2025-06-14 12:42:20');
+    (1,1,3001,'通用的','DEFAULT',1,'2025-06-14 12:42:20');
 
 /*!40000 ALTER TABLE `ai_agent_flow_config` ENABLE KEYS */;
 UNLOCK TABLES;
